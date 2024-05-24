@@ -222,7 +222,7 @@ A dolgozatban három modellt készítettem és értékeltem ki, annak érdekébe
 Az eredmények alapján a logisztikus regresszió modellje bizonyult a legjobbnak mind a pontosság, mind az AUC és az F1 pontszám tekintetében. Ez a modell képes a legtöbb esetben helyesen azonosítani a szívbetegséget, és jól megkülönbözteti a pozitív és negatív osztályokat. Az orvosi döntéshozatal során különösen fontos, hogy minimalizáljuk a false negative esetek számát, azaz a nem diagnosztizált szívbetegek számát.
 
 Azonban a többi modell sem rossz, mind a KNN és at SWM is 0,9 feletti AUC pontszámmal rendelkezik, tehát az esetek több mint 90%-ban jól meg tudják különböztetni egymástól a két osztályt.
-***Vémann Sára	21******
+
 
 
 
