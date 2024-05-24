@@ -104,7 +104,8 @@ A numerikus változók közül a főbb erek számánál (ca), az adatok több mi
 
 Ezek után egy korrelációs mátrix segítségével megvizsgáltam az adatokat.
 
-![](Aspose.Words.7686c5c7-03f7-40ff-ae60-71afd13206fe.001.png)
+![image](https://github.com/VemannSara/DataAnalysis/assets/131291055/7c43098a-908b-4ac3-9d76-a68d84ed7935)
+
 
 1\*. ábra Korrelációs mátrix*
 
@@ -116,19 +117,16 @@ VIF = 11-R2
 
 Itt az R<sup>2</sup> azt mutatja meg, hogy a magyarázó változó varianciája mennyire magyarázható a többi változóval szemben. Ha VIF értéke egyenlő lesz 1-gyel, akkor nincs multikollinearitás a modelben, ha 1<VIF≤5, akkor elfogadható, ha 5<VIF≤10 között van akkor nagy a multikollinearitás, a ha pedig 10-nél nagyobb akkor az szignifikáns multikollinearitásra utal. Mivel az én modellemben az age, a resting\_blood\_pressure és a max\_heart\_rate is nagyon magas értéket mutatott, ennek a problémának az orvoslására a PCA (Principal Component Analysis) dimenzó csökkentő eljárást alkalmaztam. Ez az eljárás új változókat hoz létre, amelyek felírhatóak az eredeti változók lineáris kombinációjaként, viszont ezek a létrehozott fő komponensek függetlennek lesznek egymástól, miközben az adatok varianciájának minél nagyobb részét igyekeznek megőrizni. Az így létrehozott adathalmaz dimenzionalitása kisebb lesz és ahogy az alábbi ábrán láthatjuk a VIF értékek alapján, így már a multikollinearitás sem áll fenn. Fontos megjegyezni, hogy mivel a PCA érzékeny az adatok skálájára, ezért előtte standardizáltam az adatokat, hogy 0 és 1 közötti értéket vegyenek fel. A komponensek számát úgy határoztam meg, hogy az adatok varianciájának 95%-a megmaradjon, így 15 új komponenst kaptam.
 
-![A képen szöveg, képernyőkép, menü, Betűtípus látható
+![image](https://github.com/VemannSara/DataAnalysis/assets/131291055/871f9c51-3f26-4ab1-ac4e-4ef6f3bf6b67)
+![image](https://github.com/VemannSara/DataAnalysis/assets/131291055/a165615d-6419-4aaf-8ed5-fbacf4a94048)
 
-Automatikusan generált leírás](Aspose.Words.7686c5c7-03f7-40ff-ae60-71afd13206fe.002.jpeg)![A képen szöveg, képernyőkép látható
-
-Automatikusan generált leírás](Aspose.Words.7686c5c7-03f7-40ff-ae60-71afd13206fe.003.png)
 
 2\*. ábra VIF mutatók a PCA előtt és után*
 
 A következő lépésben megvizsgáltam a célváltozó (heart\_desease\_yes) azaz, a szívbetegség jelenlétének osztályeloszlását. A lenti ábrán láthatjuk, hogy kiegyensúlyozatlan az adathalmaz, ezért az „under sampling” módszert alkalmazva, a többségi osztályt (ami a nem szívbeteg kategória) leredukáltam a kisebbségi osztály elemszámára, így már kiegyensúlyozott osztályaim lettek. Azért választottam ezt a módszert, mert nem volt lehetőségem új valós adatok bevonására. Az azonos osztályeloszlás azért fontos, hogy a modell mindkét csoport karakterisztikáit egyenlő mértékben meg tudja tanulni.
 
-![A képen szöveg, képernyőkép, Téglalap, diagram látható
+![image](https://github.com/VemannSara/DataAnalysis/assets/131291055/a3209937-5d3d-4fcb-8fa5-4524d83b9e0e)
 
-Automatikusan generált leírás](Aspose.Words.7686c5c7-03f7-40ff-ae60-71afd13206fe.004.jpeg)
 
 3\*. ábra Osztályeloszlás, a többségi osztály csökkentése előtt*
 1. # <a name="_toc166938218"></a>**A modell**
@@ -148,7 +146,8 @@ Az alábbi hiperparamétereket állítottam:
 
 A gridSearchCV alapján pedig az alébbi hiperparaméterekkel lett a modell a legoptimálisabb:
 
-![](Aspose.Words.7686c5c7-03f7-40ff-ae60-71afd13206fe.005.png)
+![image](https://github.com/VemannSara/DataAnalysis/assets/131291055/b2d65c0c-1746-4926-86e0-840054456b82)
+)
 
 Ezek után lefuttattam a modellt és a teszt adatokon végeztem el a kiértékelését.
 
@@ -158,9 +157,8 @@ A modell pontossága (Accuracy) 84,75% ami azt mutatja, hogy a modell képes a l
 
 Az AUC érték (AUC score) 0.931 azt jelzi, hogy a modell kiválóan teljesít a pozitív és negatív osztályok megkülönböztetésében. Tehát a modell jól tudja különválasztani a szívbetegeket és az egészségeseket.
 
-![A képen szöveg, Betűtípus, képernyőkép, tipográfia látható
+![image](https://github.com/VemannSara/DataAnalysis/assets/131291055/1f6f1c8b-e3d2-4f1b-bcba-fbf93265b10f)
 
-Automatikusan generált leírás](Aspose.Words.7686c5c7-03f7-40ff-ae60-71afd13206fe.006.png)
 
 A kapott eredményeket a legjobban hibamátrixal lehet szemléltetni. A mátrix négy kategóriába sorolja az adatokat. A mi esetünkben a TN (true negative) kategóriába 35 db adat került, ez azt jelenti, hogy a modellünk 35 esetben jól azonosította, hogy ha valaki nem szívbeteg. Ezzel szemben a TP (true positive) kategóriában a modell 15 esetben állapította meg jól szívbetegség jelenléltét. Az FP (false positive) kategóriába 3 adat került, tehát a modell 3 embert tévedésből a szívbeteg kategóriába sorolt, amikor nem azok. Ezzel szemben viszont a FN (false negative) esetben 6 embert sorolt, a nem szívbeteg kategóriába, akik szívbeteg.
 
@@ -170,9 +168,8 @@ F1=2\* P\*RP+R
 
 Itt a pontosság (P-precision), azt mondja meg, hogy a modell a pozitív osztályba sorolt adatai közül mennyi volt ténylegesen pozitív, a visszahívás (R-recall), pedig azt mutatja, hogy az összes pozitív esetből hányat sikerült ténylegesen azonosítani. Az én modellemben az F1 pontszám 0.769, ami átlagosnak mondható és azt a fejezi ki, hogy mennyire hatékonyan találja meg a pozitív eseteket és mennyire pontosak ezeknek az eseteknek az előrejelzése. 
 
-![A képen szöveg, képernyőkép, diagram, Téglalap látható
+![image](https://github.com/VemannSara/DataAnalysis/assets/131291055/56e57697-f21b-4553-a3c0-eef0f3568ab8)
 
-Automatikusan generált leírás](Aspose.Words.7686c5c7-03f7-40ff-ae60-71afd13206fe.007.png)
 
 4\*. ábra Hibamátrix*
 
@@ -180,17 +177,14 @@ Véleményem szerint, egy orvosi döntéshozatalnál nagyobb probléma, ha valak
 1. ## <a name="_toc166938220"></a>**K-nearest neighbours (KNN)**
 A KNN algoritmus a legfontosabb hiperparaméterének beállításával kezdtem, ami a K (n\_neighbours), ez meghatározza, hogy hány közelebbi szomszédot vegyen figyelembe a döntéshozatal során. Ez azért fontos, mivel túl kevés szomszéd esetén érzékenyebb lesz a zajra, ami túlilleszkedést (overfitting) eredményez, túl sok szomszéd, pedig alulillesztéshez (underfitting) vezethet.
 
-![A képen szöveg, Betűtípus, képernyőkép, tipográfia látható
+![image](https://github.com/VemannSara/DataAnalysis/assets/131291055/97daa782-bb58-4888-840a-ff4bb6938c27)
+![image](https://github.com/VemannSara/DataAnalysis/assets/131291055/e069b3a6-3294-4d65-8b25-5474f93f0909)
 
-Automatikusan generált leírás](Aspose.Words.7686c5c7-03f7-40ff-ae60-71afd13206fe.008.png)![A képen szöveg, Betűtípus, képernyőkép, tipográfia látható
-
-Automatikusan generált leírás](Aspose.Words.7686c5c7-03f7-40ff-ae60-71afd13206fe.009.png) 
 
 Az eredmények alapján a 18 szomszéd számot választottam, mivel az AUC itt volt a legmagasabb 0.93, egy darabig stagnált, majd 25 szomszédnál elkezdett csökkeni. A választásnál arra törekedtem, hogy egy olyan modellem legyen, ami a lehető legjobban különbözteti meg a szívbetegeket a nem szívbetegektől.
 
-![A képen szöveg, képernyőkép, Téglalap, diagram látható
+![image](https://github.com/VemannSara/DataAnalysis/assets/131291055/b917a1f7-dd65-4886-bec8-d42948df815e)
 
-Automatikusan generált leírás](Aspose.Words.7686c5c7-03f7-40ff-ae60-71afd13206fe.010.png)
 
 5\*. ábra Hibamátrix KNN*
 
@@ -208,9 +202,8 @@ A GridSearchCV alapján a legjobb paraméter a C=15 és kernel=’linear’ lett
 
 Az AUC ebben a modellben lett a legalacsonyabb, de még így is magasnak számít, tehát jól meg tudja különböztetni a modell a szívbetegeket a nem szívbetegektől.
 
-![A képen szöveg, képernyőkép, diagram, Téglalap látható
+![image](https://github.com/VemannSara/DataAnalysis/assets/131291055/f6a0e1e1-d65d-40d4-9bdd-fd0084063aca)
 
-Automatikusan generált leírás](Aspose.Words.7686c5c7-03f7-40ff-ae60-71afd13206fe.011.png)
 
 6\*. ábra Hibamátrix SVM*
 
