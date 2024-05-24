@@ -115,7 +115,7 @@ Az mátrix segítségével jól látható, hogy számos magyarázó változó k�
 
 ` `Ezt követően vizsgáltam a VIF (Variance Inflation Factor) mutatókat annak érdekében, hogy meggyőződjek a multikollinearitás jelenlétéről. Ez a szám megmutatja, hogy mekkora összefüggés van a magyarázó változóink között.
 
-VIF = 11-R2
+VIF = 1/(1-R2)
 
 Itt az R<sup>2</sup> azt mutatja meg, hogy a magyarázó változó varianciája mennyire magyarázható a többi változóval szemben. Ha VIF értéke egyenlő lesz 1-gyel, akkor nincs multikollinearitás a modelben, ha 1<VIF≤5, akkor elfogadható, ha 5<VIF≤10 között van akkor nagy a multikollinearitás, a ha pedig 10-nél nagyobb akkor az szignifikáns multikollinearitásra utal. Mivel az én modellemben az age, a resting\_blood\_pressure és a max\_heart\_rate is nagyon magas értéket mutatott, ennek a problémának az orvoslására a PCA (Principal Component Analysis) dimenzó csökkentő eljárást alkalmaztam. Ez az eljárás új változókat hoz létre, amelyek felírhatóak az eredeti változók lineáris kombinációjaként, viszont ezek a létrehozott fő komponensek függetlennek lesznek egymástól, miközben az adatok varianciájának minél nagyobb részét igyekeznek megőrizni. Az így létrehozott adathalmaz dimenzionalitása kisebb lesz és ahogy az alábbi ábrán láthatjuk a VIF értékek alapján, így már a multikollinearitás sem áll fenn. Fontos megjegyezni, hogy mivel a PCA érzékeny az adatok skálájára, ezért előtte standardizáltam az adatokat, hogy 0 és 1 közötti értéket vegyenek fel. A komponensek számát úgy határoztam meg, hogy az adatok varianciájának 95%-a megmaradjon, így 15 új komponenst kaptam.
 
