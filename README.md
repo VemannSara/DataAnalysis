@@ -1,9 +1,9 @@
 
 <a name="_toc49137848"></a><a name="_toc49143739"></a><a name="_toc49919691"></a><a name="_toc116895324"></a><a name="_toc118117001"></a><a name="_toc149456468"></a><a name="_toc165971860"></a>
 
-#**Adatbányászat és gépi tanulás beadandó feladat**
+#Adatbányászat és gépi tanulás beadandó feladat
 
-#**A szívbetegségek előrejelzése adatelemzési eszközökkel**
+#A szívbetegségek előrejelzése adatelemzési eszközökkel
 
 **Vémann Sára**
 
