@@ -106,7 +106,7 @@ A numerikus változók közül a főbb erek számánál (ca), az adatok több mi
 
 Ezek után egy korrelációs mátrix segítségével megvizsgáltam az adatokat.
 
-![image](https://github.com/VemannSara/DataAnalysis/assets/131291055/7c43098a-908b-4ac3-9d76-a68d84ed7935)
+![image](https://github.com/VemannSara/DataAnalysis/assets/131291055/f0fe508c-b9bd-4996-a464-921e3d9fdd27)
 
 
 1\*. ábra Korrelációs mátrix*
@@ -127,7 +127,8 @@ Itt az R<sup>2</sup> azt mutatja meg, hogy a magyarázó változó varianciája 
 
 A következő lépésben megvizsgáltam a célváltozó (heart\_desease\_yes) azaz, a szívbetegség jelenlétének osztályeloszlását. A lenti ábrán láthatjuk, hogy kiegyensúlyozatlan az adathalmaz, ezért az „under sampling” módszert alkalmazva, a többségi osztályt (ami a nem szívbeteg kategória) leredukáltam a kisebbségi osztály elemszámára, így már kiegyensúlyozott osztályaim lettek. Azért választottam ezt a módszert, mert nem volt lehetőségem új valós adatok bevonására. Az azonos osztályeloszlás azért fontos, hogy a modell mindkét csoport karakterisztikáit egyenlő mértékben meg tudja tanulni.
 
-![image](https://github.com/VemannSara/DataAnalysis/assets/131291055/a3209937-5d3d-4fcb-8fa5-4524d83b9e0e)
+![image](https://github.com/VemannSara/DataAnalysis/assets/131291055/902d3867-e25a-45bd-a8e6-18ff4bd17454)
+
 
 
 3\*. ábra Osztályeloszlás, a többségi osztály csökkentése előtt*
@@ -170,7 +171,8 @@ F1=2\* P\*RP+R
 
 Itt a pontosság (P-precision), azt mondja meg, hogy a modell a pozitív osztályba sorolt adatai közül mennyi volt ténylegesen pozitív, a visszahívás (R-recall), pedig azt mutatja, hogy az összes pozitív esetből hányat sikerült ténylegesen azonosítani. Az én modellemben az F1 pontszám 0.769, ami átlagosnak mondható és azt a fejezi ki, hogy mennyire hatékonyan találja meg a pozitív eseteket és mennyire pontosak ezeknek az eseteknek az előrejelzése. 
 
-![image](https://github.com/VemannSara/DataAnalysis/assets/131291055/56e57697-f21b-4553-a3c0-eef0f3568ab8)
+
+![image](https://github.com/VemannSara/DataAnalysis/assets/131291055/6e95beb5-0dba-4443-b581-bcab6ae4a246)
 
 
 4\*. ábra Hibamátrix*
@@ -185,7 +187,7 @@ A KNN algoritmus a legfontosabb hiperparaméterének beállításával kezdtem, 
 
 Az eredmények alapján a 18 szomszéd számot választottam, mivel az AUC itt volt a legmagasabb 0.93, egy darabig stagnált, majd 25 szomszédnál elkezdett csökkeni. A választásnál arra törekedtem, hogy egy olyan modellem legyen, ami a lehető legjobban különbözteti meg a szívbetegeket a nem szívbetegektől.
 
-![image](https://github.com/VemannSara/DataAnalysis/assets/131291055/b917a1f7-dd65-4886-bec8-d42948df815e)
+![image](https://github.com/VemannSara/DataAnalysis/assets/131291055/33d3ca2b-b1d3-4429-be5c-97e4817a0da7)
 
 
 5\*. ábra Hibamátrix KNN*
@@ -204,7 +206,7 @@ A GridSearchCV alapján a legjobb paraméter a C=15 és kernel=’linear’ lett
 
 Az AUC ebben a modellben lett a legalacsonyabb, de még így is magasnak számít, tehát jól meg tudja különböztetni a modell a szívbetegeket a nem szívbetegektől.
 
-![image](https://github.com/VemannSara/DataAnalysis/assets/131291055/f6a0e1e1-d65d-40d4-9bdd-fd0084063aca)
+![image](https://github.com/VemannSara/DataAnalysis/assets/131291055/259e1015-16ef-42f9-91ba-a4eed3abfcda)
 
 
 6\*. ábra Hibamátrix SVM*
